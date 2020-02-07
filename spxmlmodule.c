@@ -40,7 +40,7 @@ PyObject *getList(size_t length, short *array)
     PyObject *list = PyList_New(length);
     for (int i = 0; i < length; ++i)
     {
-        PyList_SetItem(list, i, PyFloat_FromDouble(array[i]/1.0));
+        PyList_SetItem(list, i, PyFloat_FromDouble(array[i]/(double)1.0));
     }
 
     return list;
