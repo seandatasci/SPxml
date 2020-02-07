@@ -35,12 +35,12 @@ char *concat(const char *s1, const char *s2)
     return result;
 }
 
-PyObject *getList(size_t length, short *array)
+PyObject *getList(size_t length, array)
 {
     PyObject *list = PyList_New(length);
     for (int i = 0; i < length; ++i)
     {
-        PyList_SetItem(list, i, PyFloat_FromDouble((double)array[i]/(double)1.0));
+        PyList_SetItem(list, i, PyFloat_FromDouble((double)array[i]));
     }
 
     return list;
@@ -57,7 +57,7 @@ PyObject *getData(size_t nleads, lead_t *leads)
             "name", leads[i].name,
             "nsamples", leads[i].count,
             "duration", leads[i].duration,
-            "data", getList(leads[i].count, leads[i].samples));
+            "data", getList(leads[i].count, leads[i].samples);
 
         PyList_SetItem(result, i, lead);
     }
@@ -116,7 +116,7 @@ SPxml_getLeads(PyObject *self, PyObject *args)
         */
         /*
         * lead.name(char*): e.g. I, II, III
-        * lead.samples(short[]): Lead sample data
+        * lead.samples([]): Lead sample data
         * lead.count(size_t): Number of samples
         * lead.duration(size_t): Total msec of the recording
         */
